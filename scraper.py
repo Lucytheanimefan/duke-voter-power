@@ -91,13 +91,17 @@ def get_voting_info(class_name, info_type):
 		i=i+1
 	return json_dict
 		
-
+def write_data_to_file(data, filename):
+	text_file = open(filename, "w")
+	text_file.write(str(data))
+	text_file.close()
 
 print get_voting_info('roi-table','votingPowerIndex')
+write_data_to_file(get_voting_info('roi-table','votingPowerIndex'), "voting_power.txt")
 
 print "--------------------------"
 
 print get_voting_info('tipping-table','tippingPower')
-
+write_data_to_file(get_voting_info('tipping-table','tippingPower'), "tipping_power.txt")
 
 #def format_data_json(data):
