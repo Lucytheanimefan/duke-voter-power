@@ -63,10 +63,10 @@ res.raise_for_status
 
 soup=bs4.BeautifulSoup(res.text,'html.parser')
 
+json_dict={}
 def get_voting_info(class_name, info_type):
 	state_name = ""
 	num_value=None
-	json_dict={}
 
 	roi_table = soup.find_all('div',{'class':class_name})
 
@@ -81,27 +81,34 @@ def get_voting_info(class_name, info_type):
 
 		if state_name and num_value:
 			#print state_name +","+num_value
-			if state_name.encode('utf=8') in us_state_abbrev:
-				json_dict[us_state_abbrev[state_name.encode('utf=8')]]={info_type: num_value.encode('utf-8')}
+			if state_name.encode('utf-8') in us_state_abbrev:
+				state_abbrev = us_state_abbrev[state_name.encode('utf=8')]
+				if state_abbrev in json_dict:
+					json_dict[state_abbrev][info_type]= num_value.encode('utf-8')
+				else:
+					json_dict[state_abbrev]={info_type:num_value.encode('utf-8')}
 			else:
-				json_dict[state_name.encode('utf=8')]={info_type:num_value.encode('utf-8')}
+				if state_name.encode('utf-8') in json_dict:
+					json_dict[state_name.encode('utf-8')][info_type]=num_value.encode('utf-8')
+				else:
+					json_dict[state_name.encode('utf-8')]={info_type:num_value.encode('utf-8')}
 			#reset to none
 			state_name=None
 			num_value=None
 		i=i+1
 	return json_dict
 		
+def populateData():
+	get_voting_info('roi-table','votingPowerIndex')
+	get_voting_info('tipping-table','tippingPower')
+	return json_dict
+
 def write_data_to_file(data, filename):
 	text_file = open(filename, "w")
 	text_file.write(str(data))
 	text_file.close()
 
-print get_voting_info('roi-table','votingPowerIndex')
-write_data_to_file(get_voting_info('roi-table','votingPowerIndex'), "voting_power.txt")
 
-print "--------------------------"
+write_data_to_file(str(populateData()), "voting_data.txt")
 
-print get_voting_info('tipping-table','tippingPower')
-write_data_to_file(get_voting_info('tipping-table','tippingPower'), "tipping_power.txt")
 
-#def format_data_json(data):

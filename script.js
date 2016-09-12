@@ -1,22 +1,62 @@
 function scrapeSite() {
-    $.ajax({
-        url: "http://projects.fivethirtyeight.com/2016-election-forecast/",
-        dataType: 'text',
-        success: function(data) {
-            var elements = $("<div>").html(data)[0].getElementsByClassName("roi-table");
-            console.log(elements);
-            /*
-            for (var i = 0; i < elements.length; i++) {
-                console.log(eleme)
-                var theText = elements[i].firstChild.nodeValue;
-                // Do something here
-            }
-            */
-        }
+    var url = "http://projects.fivethirtyeight.com/2016-election-forecast/"
+    $.get(url, function(data) {
+        parseHTMLdata(data);
     });
 }
 
 scrapeSite();
+
+function parseHTMLdata(htmlData) {
+    console.log($.parseHTML(htmlData));
+}
+
+function mapDOM(element, json) {
+    var treeObject = {};
+
+    // If string convert to document Node
+    if (typeof element === "string") {
+        if (window.DOMParser) {
+            parser = new DOMParser();
+            docNode = parser.parseFromString(element, "text/xml");
+        } else { // Microsoft strikes again
+            docNode = new ActiveXObject("Microsoft.XMLDOM");
+            docNode.async = false;
+            docNode.loadXML(element);
+        }
+        element = docNode.firstChild;
+    }
+
+    //Recursively loop through DOM elements and assign properties to object
+    function treeHTML(element, object) {
+        object["type"] = element.nodeName;
+        var nodeList = element.childNodes;
+        if (nodeList != null) {
+            if (nodeList.length) {
+                object["content"] = [];
+                for (var i = 0; i < nodeList.length; i++) {
+                    if (nodeList[i].nodeType == 3) {
+                        object["content"].push(nodeList[i].nodeValue);
+                    } else {
+                        object["content"].push({});
+                        treeHTML(nodeList[i], object["content"][object["content"].length - 1]);
+                    }
+                }
+            }
+        }
+        if (element.attributes != null) {
+            if (element.attributes.length) {
+                object["attributes"] = {};
+                for (var i = 0; i < element.attributes.length; i++) {
+                    object["attributes"][element.attributes[i].nodeName] = element.attributes[i].nodeValue;
+                }
+            }
+        }
+    }
+    treeHTML(element, treeObject);
+
+    return (json) ? JSON.stringify(treeObject) : treeObject;
+}
 
 
 var election = new Datamap({
