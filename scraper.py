@@ -80,18 +80,26 @@ def get_voting_info(class_name, info_type):
 			num_value=state.get_text().strip("<").rstrip()
 
 		if state_name and num_value:
-			#print state_name +","+num_value
-			if state_name.encode('utf-8') in us_state_abbrev:
-				state_abbrev = us_state_abbrev[state_name.encode('utf=8')]
+			stateName = state_name.encode('utf=8')
+			if "Nebraska" in stateName:
+				print "Nebraska!"
+				stateName="Nebraska"
+			if "Maine" in stateName:
+				stateName="Maine"
+			if stateName in us_state_abbrev:
+				state_abbrev = us_state_abbrev[stateName]
 				if state_abbrev in json_dict:
 					json_dict[state_abbrev][info_type]= num_value.encode('utf-8')
 				else:
 					json_dict[state_abbrev]={info_type:num_value.encode('utf-8')}
+			'''
 			else:
-				if state_name.encode('utf-8') in json_dict:
-					json_dict[state_name.encode('utf-8')][info_type]=num_value.encode('utf-8')
-				else:
-					json_dict[state_name.encode('utf-8')]={info_type:num_value.encode('utf-8')}
+				if "Nebraska" in state_name.encode('utf-8'):
+					if "Nebraska" in json_dict:
+						json_dict[state_name.encode('utf-8')][info_type]=num_value.encode('utf-8')
+					else:
+						json_dict[state_name.encode('utf-8')]={info_type:num_value.encode('utf-8')}
+			'''
 			#reset to none
 			state_name=None
 			num_value=None
