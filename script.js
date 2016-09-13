@@ -59,6 +59,22 @@ function mapDOM(element, json) {
 }
 
 
+function generateHexGradient(numColors) {
+    var rainbow = new Rainbow();
+    rainbow.setNumberRange(1, numColors);
+    rainbow.setSpectrum('red', 'black');
+    var s='';
+    for (var i = 1; i <= numColors; i++) {
+        var hexColour = rainbow.colourAt(i);
+        s += '#' + hexColour + ',';
+    }
+    var arr = s.split(",")
+    return arr
+}
+
+console.log(generateHexGradient(10));
+
+
 var election = new Datamap({
     scope: 'usa',
     element: document.getElementById('map_election'),
