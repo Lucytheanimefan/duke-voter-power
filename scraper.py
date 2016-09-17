@@ -65,7 +65,7 @@ soup=bs4.BeautifulSoup(res.text,'html.parser')
 
 json_dict={}
 color_dict={}
-hexColors=['#8000ff','#8c19ff','#9932ff','#a64cff','#b266ff','#bf7fff','#cc99ff','#d8b2ff','#e5ccff','#f2e5ff','#ffffff']
+hexColors=['#8000ff','#8c19ff','#9932ff','#a64cff','#b266ff','#bf7fff','#cc99ff','#d8b2ff','#dbb9ff','#dfc1ff','#e3c9ff','#e7d0ff','#ebd8ff']
 def get_voting_info(class_name, info_type):
 	state_name = ""
 	num_value=None
@@ -119,10 +119,12 @@ def get_voting_info(class_name, info_type):
 						color_dict[num_value.encode('utf-8')]=hexColors[8]
 					elif float(num_value.strip('%'))>2:
 						color_dict[num_value.encode('utf-8')]=hexColors[9]
-					else:
+					elif float(num_value.strip('%'))>1:
 						color_dict[num_value.encode('utf-8')]=hexColors[10]
-					#else:
-					#	color_dict[num_value.encode('utf-8')]=hexColors[11]
+					elif float(num_value.strip('%'))>0.5:
+						color_dict[num_value.encode('utf-8')]=hexColors[11]
+					else:
+						color_dict[num_value.encode('utf-8')]=hexColors[12]
 			'''
 			else:
 				if "Nebraska" in state_name.encode('utf-8'):
