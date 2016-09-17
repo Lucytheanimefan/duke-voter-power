@@ -65,7 +65,8 @@ soup=bs4.BeautifulSoup(res.text,'html.parser')
 
 json_dict={}
 color_dict={}
-hexColors=['#8000ff','#8c19ff','#9932ff','#a64cff','#b266ff','#bf7fff','#cc99ff','#d8b2ff','#dbb9ff','#dfc1ff','#e3c9ff','#e7d0ff','#ebd8ff']
+hexColors=['#8000ff','#8c19ff','#9932ff','#a64cff','#b266ff','#bf7fff','#cc99ff','#d8b2ff','#dbb9ff','#dfc1ff','#e2c7ff','#e5cdff','#e8d3ff','#ebd9ff','#efe0ff','#f2e6ff','#f5ecff','#f8f2ff','#fbf8ff']
+print len(hexColors)
 def get_voting_info(class_name, info_type):
 	state_name = ""
 	num_value=None
@@ -95,36 +96,46 @@ def get_voting_info(class_name, info_type):
 				else:
 					json_dict[state_abbrev]={info_type:num_value.encode('utf-8')}
 
-				json_dict[state_abbrev]["fillKey"]=num_value.encode('utf-8')
-				if class_name=='tipping-table':
+				if class_name=='roi-table':
+					json_dict[state_abbrev]["fillKey"]=num_value.encode('utf-8')
 					print "filling colors"
 					#num_value=num_value.strip("%")
-					if float(num_value.strip('%'))>15:
+					if float(num_value.strip('%'))>4.5:
 						color_dict[num_value.encode('utf-8')]=hexColors[0]
-					elif float(num_value.strip('%'))>10:
-						color_dict[num_value.encode('utf-8')]=hexColors[1]
-					elif float(num_value.strip('%'))>9:
-						color_dict[num_value.encode('utf-8')]=hexColors[2]
-					elif float(num_value.strip('%'))>8:
-						color_dict[num_value.encode('utf-8')]=hexColors[3]
-					elif float(num_value.strip('%'))>7:
-						color_dict[num_value.encode('utf-8')]=hexColors[4]
-					elif float(num_value.strip('%'))>6:
-						color_dict[num_value.encode('utf-8')]=hexColors[5]
-					elif float(num_value.strip('%'))>5:
-						color_dict[num_value.encode('utf-8')]=hexColors[6]
 					elif float(num_value.strip('%'))>4:
-						color_dict[num_value.encode('utf-8')]=hexColors[7]
+						color_dict[num_value.encode('utf-8')]=hexColors[1]
+					elif float(num_value.strip('%'))>3.5:
+						color_dict[num_value.encode('utf-8')]=hexColors[2]
 					elif float(num_value.strip('%'))>3:
-						color_dict[num_value.encode('utf-8')]=hexColors[8]
+						color_dict[num_value.encode('utf-8')]=hexColors[3]
+					elif float(num_value.strip('%'))>2.5:
+						color_dict[num_value.encode('utf-8')]=hexColors[4]
+					elif float(num_value.strip('%'))>2.4:
+						color_dict[num_value.encode('utf-8')]=hexColors[5]
+					elif float(num_value.strip('%'))>2.3:
+						color_dict[num_value.encode('utf-8')]=hexColors[6]
+					elif float(num_value.strip('%'))>2.2:
+						color_dict[num_value.encode('utf-8')]=hexColors[7]
 					elif float(num_value.strip('%'))>2:
+						color_dict[num_value.encode('utf-8')]=hexColors[8]
+					elif float(num_value.strip('%'))>1.8:
 						color_dict[num_value.encode('utf-8')]=hexColors[9]
-					elif float(num_value.strip('%'))>1:
+					elif float(num_value.strip('%'))>1.5:
 						color_dict[num_value.encode('utf-8')]=hexColors[10]
-					elif float(num_value.strip('%'))>0.5:
+					elif float(num_value.strip('%'))>0.9:
 						color_dict[num_value.encode('utf-8')]=hexColors[11]
-					else:
+					elif float(num_value.strip('%'))>0.6:
 						color_dict[num_value.encode('utf-8')]=hexColors[12]
+					elif float(num_value.strip('%'))>0.4:
+						color_dict[num_value.encode('utf-8')]=hexColors[13]
+					elif float(num_value.strip('%'))>0.3:
+						color_dict[num_value.encode('utf-8')]=hexColors[15]
+					elif float(num_value.strip('%'))>0.2:
+						color_dict[num_value.encode('utf-8')]=hexColors[16]
+					elif float(num_value.strip('%'))>=0.1:
+						color_dict[num_value.encode('utf-8')]=hexColors[17]
+					else:
+						color_dict[num_value.encode('utf-8')]=hexColors[18]
 			'''
 			else:
 				if "Nebraska" in state_name.encode('utf-8'):
