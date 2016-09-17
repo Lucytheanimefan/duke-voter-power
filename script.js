@@ -6,11 +6,11 @@ var election = new Datamap({
     scope: 'usa',
     element: document.getElementById('map_election'),
     geographyConfig: {
-        highlightBorderColor: '#bada55',
+        highlightBorderColor: '#5900b2',
         popupTemplate: function(geography, data) {
-            return '<div class="hoverinfo">' + geography.properties.name +
-                '<br> Tipping Power: ' + data.tippingPower +
-                '<br> Voting Power Index: ' + data.votingPowerIndex
+            return '<div class="hoverinfo"><span class="state">' + geography.properties.name +
+                '</span><br> Tipping Power: <span class="tippingPower">' + data.tippingPower +
+                '</span><br> Voting Power Index: <span class="votingPowerIndex">' + data.votingPowerIndex +'</span>'
         },
         highlightBorderWidth: 3
     },
