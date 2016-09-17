@@ -1,11 +1,14 @@
-function scrapeSite() {
+var votingData={'WA': {'tippingPower': '0.7%', 'votingPowerIndex': '0.3', 'fillKey': '0.7%'}, 'DE': {'tippingPower': '0.8%', 'votingPowerIndex': '2.5', 'fillKey': '0.8%'}, 'WI': {'tippingPower': '6.4%', 'votingPowerIndex': '2.8', 'fillKey': '6.4%'}, 'WV': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'HI': {'tippingPower': '0.1%', 'votingPowerIndex': '0.3', 'fillKey': '0.1%'}, 'FL': {'tippingPower': '18.1%', 'votingPowerIndex': '2.6', 'fillKey': '18.1%'}, 'WY': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'NH': {'tippingPower': '2.5%', 'votingPowerIndex': '4.6', 'fillKey': '2.5%'}, 'NJ': {'tippingPower': '2.5%', 'votingPowerIndex': '0.9', 'fillKey': '2.5%'}, 'NM': {'tippingPower': '1.3%', 'votingPowerIndex': '2.2', 'fillKey': '1.3%'}, 'TX': {'tippingPower': '0.6%', 'votingPowerIndex': '0.1', 'fillKey': '0.6%'}, 'LA': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'NC': {'tippingPower': '9.1%', 'votingPowerIndex': '2.6', 'fillKey': '9.1%'}, 'ND': {'tippingPower': '0.2%', 'votingPowerIndex': '0.7', 'fillKey': '0.2%'}, 'NE': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'TN': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'NY': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'PA': {'tippingPower': '10.6%', 'votingPowerIndex': '2.5', 'fillKey': '10.6%'}, 'RI': {'tippingPower': '0.9%', 'votingPowerIndex': '2.8', 'fillKey': '0.9%'}, 'NV': {'tippingPower': '3.6%', 'votingPowerIndex': '4.4', 'fillKey': '3.6%'}, 'VA': {'tippingPower': '6.1%', 'votingPowerIndex': '2.1', 'fillKey': '6.1%'}, 'CO': {'tippingPower': '5.5%', 'votingPowerIndex': '2.6', 'fillKey': '5.5%'}, 'AK': {'tippingPower': '0.3%', 'votingPowerIndex': '1.3', 'fillKey': '0.3%'}, 'AL': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'AR': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'VT': {'tippingPower': '0.1%', 'votingPowerIndex': '0.4', 'fillKey': '0.1%'}, 'IL': {'tippingPower': '0.4%', 'votingPowerIndex': '0.1', 'fillKey': '0.4%'}, 'GA': {'tippingPower': '2.4%', 'votingPowerIndex': '0.8', 'fillKey': '2.4%'}, 'IN': {'tippingPower': '0.2%', 'votingPowerIndex': '0.1', 'fillKey': '0.2%'}, 'IA': {'tippingPower': '2.3%', 'votingPowerIndex': '1.9', 'fillKey': '2.3%'}, 'OK': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'AZ': {'tippingPower': '1.8%', 'votingPowerIndex': '1.0', 'fillKey': '1.8%'}, 'CA': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'ID': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'CT': {'tippingPower': '0.4%', 'votingPowerIndex': '0.3', 'fillKey': '0.4%'}, 'ME': {'tippingPower': '0.1%', 'votingPowerIndex': '0.3', 'fillKey': '0.1%'}, 'MD': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'MA': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'OH': {'tippingPower': '8.5%', 'votingPowerIndex': '2.0', 'fillKey': '8.5%'}, 'UT': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'MO': {'tippingPower': '0.2%', 'votingPowerIndex': '0.1', 'fillKey': '0.2%'}, 'MN': {'tippingPower': '2.9%', 'votingPowerIndex': '1.3', 'fillKey': '2.9%'}, 'MI': {'tippingPower': '8.7%', 'votingPowerIndex': '2.4', 'fillKey': '8.7%'}, 'KS': {'tippingPower': '0.3%', 'votingPowerIndex': '0.3', 'fillKey': '0.3%'}, 'MT': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'MS': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'SC': {'tippingPower': '0.3%', 'votingPowerIndex': '0.2', 'fillKey': '0.3%'}, 'KY': {'tippingPower': '0.1%', 'votingPowerIndex': '0.1', 'fillKey': '0.1%'}, 'OR': {'tippingPower': '0.3%', 'votingPowerIndex': '0.2', 'fillKey': '0.3%'}, 'SD': {'tippingPower': '0.1%', 'votingPowerIndex': '0.2', 'fillKey': '0.1%'}};
+var colorKey={'0.6%': '#ffffff', '10.6%': '#8c19ff', '0.4%': '#ffffff', '8.7%': '#a64cff', '6.4%': '#bf7fff', '8.5%': '#a64cff', '9.1%': '#9932ff', '0.8%': '#ffffff', '1.3%': '#ffffff', '2.3%': '#f2e5ff', '2.5%': '#f2e5ff', '0.2%': '#ffffff', '0.1%': '#ffffff', '0.7%': '#ffffff', '1.8%': '#ffffff', '2.9%': '#f2e5ff', '5.5%': '#cc99ff', '18.1%': '#8000ff', '3.6%': '#e5ccff', '6.1%': '#bf7fff', '0.9%': '#ffffff', '2.4%': '#f2e5ff', '0.3%': '#ffffff'};
+
+function scrapeSite(){
     var url = "http://projects.fivethirtyeight.com/2016-election-forecast/"
     $.get(url, function(data) {
         parseHTMLdata(data);
     });
 }
 
-scrapeSite();
+//scrapeSite();
 
 function parseHTMLdata(htmlData) {
     console.log($.parseHTML(htmlData));
@@ -72,8 +75,11 @@ function generateHexGradient(numColors) {
     return arr
 }
 
-console.log(generateHexGradient(10));
+console.log(generateHexGradient(50));
 
+function sortData(data){
+
+}
 
 var election = new Datamap({
     scope: 'usa',
@@ -88,15 +94,7 @@ var election = new Datamap({
         highlightBorderWidth: 3
     },
 
-    fills: {
-        'Republican': '#CC4731',
-        'Democrat': '#306596',
-        'Heavy Democrat': '#667FAF',
-        'Light Democrat': '#A9C0DE',
-        'Heavy Republican': '#CA5E5B',
-        'Light Republican': '#EAA9A8',
-        defaultFill: '#EDDC4E'
-    },
-    data: { 'WA': { 'tippingPower': '0.7%', 'votingPowerIndex': '0.3' }, 'DE': { 'tippingPower': '0.3%', 'votingPowerIndex': '0.9' }, 'WI': { 'tippingPower': '6.8%', 'votingPowerIndex': '2.9' }, 'WV': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'HI': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.2' }, 'FL': { 'tippingPower': '15.5%', 'votingPowerIndex': '2.2' }, 'WY': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'NH': { 'tippingPower': '2.5%', 'votingPowerIndex': '4.6' }, 'NJ': { 'tippingPower': '3.3%', 'votingPowerIndex': '1.2' }, 'NM': { 'tippingPower': '1.8%', 'votingPowerIndex': '3.1' }, 'TX': { 'tippingPower': '0.7%', 'votingPowerIndex': '0.1' }, 'LA': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'NC': { 'tippingPower': '7.6%', 'votingPowerIndex': '2.2' }, 'ND': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.3' }, 'NE': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'TN': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'NY': { 'tippingPower': '0.2%', 'votingPowerIndex': '0.1' }, 'PA': { 'tippingPower': '10.6%', 'votingPowerIndex': '2.5' }, 'RI': { 'tippingPower': '0.9%', 'votingPowerIndex': '2.7' }, 'NV': { 'tippingPower': '3.7%', 'votingPowerIndex': '4.6' }, 'VA': { 'tippingPower': '5.1%', 'votingPowerIndex': '1.7' }, 'CO': { 'tippingPower': '5.5%', 'votingPowerIndex': '2.7' }, 'AK': { 'tippingPower': '0.3%', 'votingPowerIndex': '1.3' }, 'AL': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'AR': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'VT': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.6' }, 'IL': { 'tippingPower': '0.9%', 'votingPowerIndex': '0.2' }, 'GA': { 'tippingPower': '1.9%', 'votingPowerIndex': '0.6' }, 'IN': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'IA': { 'tippingPower': '2.3%', 'votingPowerIndex': '1.9' }, 'OK': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'AZ': { 'tippingPower': '1.9%', 'votingPowerIndex': '1.0' }, 'CA': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'ID': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'CT': { 'tippingPower': '0.6%', 'votingPowerIndex': '0.5' }, 'ME': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.4' }, 'MD': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'MA': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'OH': { 'tippingPower': '12.0%', 'votingPowerIndex': '2.9' }, 'UT': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'MO': { 'tippingPower': '0.3%', 'votingPowerIndex': '0.1' }, 'MN': { 'tippingPower': '3.4%', 'votingPowerIndex': '1.5' }, 'MI': { 'tippingPower': '8.0%', 'votingPowerIndex': '2.2' }, 'KS': { 'tippingPower': '0.2%', 'votingPowerIndex': '0.3' }, 'MT': { 'tippingPower': '0.2%', 'votingPowerIndex': '0.5' }, 'MS': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'SC': { 'tippingPower': '0.5%', 'votingPowerIndex': '0.3' }, 'KY': { 'tippingPower': '0.1%', 'votingPowerIndex': '0.1' }, 'OR': { 'tippingPower': '0.6%', 'votingPowerIndex': '0.5' }, 'SD': { 'tippingPower': '0.2%', 'votingPowerIndex': '0.5' } }
+    fills: colorKey,
+    data: votingData
 });
 election.labels();

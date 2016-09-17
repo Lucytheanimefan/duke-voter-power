@@ -64,6 +64,8 @@ res.raise_for_status
 soup=bs4.BeautifulSoup(res.text,'html.parser')
 
 json_dict={}
+color_dict={}
+hexColors=['#8000ff','#8c19ff','#9932ff','#a64cff','#b266ff','#bf7fff','#cc99ff','#d8b2ff','#e5ccff','#f2e5ff','#ffffff']
 def get_voting_info(class_name, info_type):
 	state_name = ""
 	num_value=None
@@ -92,6 +94,35 @@ def get_voting_info(class_name, info_type):
 					json_dict[state_abbrev][info_type]= num_value.encode('utf-8')
 				else:
 					json_dict[state_abbrev]={info_type:num_value.encode('utf-8')}
+
+				json_dict[state_abbrev]["fillKey"]=num_value.encode('utf-8')
+				if class_name=='tipping-table':
+					print "filling colors"
+					#num_value=num_value.strip("%")
+					if float(num_value.strip('%'))>15:
+						color_dict[num_value.encode('utf-8')]=hexColors[0]
+					elif float(num_value.strip('%'))>10:
+						color_dict[num_value.encode('utf-8')]=hexColors[1]
+					elif float(num_value.strip('%'))>9:
+						color_dict[num_value.encode('utf-8')]=hexColors[2]
+					elif float(num_value.strip('%'))>8:
+						color_dict[num_value.encode('utf-8')]=hexColors[3]
+					elif float(num_value.strip('%'))>7:
+						color_dict[num_value.encode('utf-8')]=hexColors[4]
+					elif float(num_value.strip('%'))>6:
+						color_dict[num_value.encode('utf-8')]=hexColors[5]
+					elif float(num_value.strip('%'))>5:
+						color_dict[num_value.encode('utf-8')]=hexColors[6]
+					elif float(num_value.strip('%'))>4:
+						color_dict[num_value.encode('utf-8')]=hexColors[7]
+					elif float(num_value.strip('%'))>3:
+						color_dict[num_value.encode('utf-8')]=hexColors[8]
+					elif float(num_value.strip('%'))>2:
+						color_dict[num_value.encode('utf-8')]=hexColors[9]
+					else:
+						color_dict[num_value.encode('utf-8')]=hexColors[10]
+					#else:
+					#	color_dict[num_value.encode('utf-8')]=hexColors[11]
 			'''
 			else:
 				if "Nebraska" in state_name.encode('utf-8'):
@@ -104,6 +135,7 @@ def get_voting_info(class_name, info_type):
 			state_name=None
 			num_value=None
 		i=i+1
+	write_data_to_file(color_dict, "colors.txt")
 	return json_dict
 		
 def populateData():
