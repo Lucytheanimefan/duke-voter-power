@@ -3,10 +3,24 @@
 
 <body>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <style type="text/css">
     .datamaps-hoverover {
         display: none;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    
+    body {
+        font-family: 'Open Sans', sans-serif;
+    }
+    
+    form {
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    
+    h1 {
+        margin-bottom: 0px;
     }
     
     .hoverinfo {
@@ -34,13 +48,22 @@
     .hoverinfo hr {
         border: 1px dotted #CCC;
     }
+
+    #stateToVoteIn{
+    	margin-top: 10px;
+    	margin-left: 20px;
+    }
     </style>
-    <label class="input">Where should I vote?</label>
-    <br>
-    <input id="myState" value="What state you are from" class="input" type="text">
-    <input type="button" value = "Submit" onclick="getStateToVoteIn()">
-    <div id="stateToVoteIn"></div>
-    <div id="container"></div>
+ 
+        <form class="pure-form pure-form-stacked">
+            <label class="input">
+                <h1>Where should I vote?</h1></label>
+            <input id="myState" placeholder="What state you are from" class="input" type="text">
+            <input type="button" id="submitbutton" class="pure-button pure-button-primary" value="Submit" onclick="getStateToVoteIn()">
+        </form>
+        <div id="stateToVoteIn"></div>
+        <div id="container"></div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="topojson.min.js"></script>

@@ -55,6 +55,12 @@ var us_state_abbrev = {
 
 var NC_Scores=votingData["NC"];
 
+$("#myState").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#submitbutton").click();
+    }
+});
+
 function getStateToVoteIn() {
     $("#stateToVoteIn").html("");
     var stateScores;
@@ -77,7 +83,12 @@ function getStateToVoteIn() {
 }
 
 function createVoteLocationResult(state){
-    $("#stateToVoteIn").append('<div>You should vote in '+state+'</div>');
+    var image="";
+    if (state=="NC"){
+        image="<img src='DukeVotes.png'>"
+        state='<a href="https://studentaffairs.duke.edu/voters">NC</a>'
+    }
+    $("#stateToVoteIn").append('<div>You should vote in '+state+'</div>'+image);
 
 }
 var election = new Datamap({
