@@ -10,7 +10,7 @@
     }
     
     .hoverinfo {
-    	font-family: 'Open Sans', sans-serif;
+        font-family: 'Open Sans', sans-serif;
         text-align: center;
         padding: 7px;
         border-radius: 1px;
@@ -20,12 +20,13 @@
         border: 1px solid #CCC;
     }
     
-    .state{
-    	font-size: 14px;
-    	font-weight: bold;
+    .state {
+        font-size: 14px;
+        font-weight: bold;
     }
-
-    .votingPowerIndex, .tippingPower {
+    
+    .votingPowerIndex,
+    .tippingPower {
         font-weight: bold;
         font-size: 17px;
     }
@@ -34,6 +35,11 @@
         border: 1px dotted #CCC;
     }
     </style>
+    <label class="input">Where should I vote?</label>
+    <br>
+    <input id="myState" value="What state you are from" class="input" type="text">
+    <input type="button" value = "Submit" onclick="getStateToVoteIn()">
+    <div id="stateToVoteIn"></div>
     <div id="container"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
