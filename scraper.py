@@ -65,7 +65,11 @@ soup=bs4.BeautifulSoup(res.text,'html.parser')
 
 json_dict={}
 color_dict={}
-hexColors=['#8000ff','#8c19ff','#9932ff','#a64cff','#b266ff','#bf7fff','#cc99ff','#d8b2ff','#dbb9ff','#dfc1ff','#e2c7ff','#e5cdff','#e8d3ff','#ebd9ff','#efe0ff','#f2e6ff','#f5ecff','#f8f2ff','#fbf8ff']
+purplehexColors=['#8000ff','#8c19ff','#9932ff','#a64cff','#b266ff','#bf7fff','#cc99ff','#d8b2ff','#dbb9ff','#dfc1ff','#e2c7ff','#e5cdff','#e8d3ff','#ebd9ff','#efe0ff','#f2e6ff','#f5ecff','#f8f2ff','#fbf8ff']
+
+#green
+hexColors=['#1a5700','#306719','#477832','#5e894c','#759a66','#8cab7f','#a3bb99','#acc1a3','#b5c8ad','#becfb7','#c7d6c1','#d1ddcc','#dae3d6','#e3eae0','#e5ece3','#e8eee6','#ebf0e9','#eef2ec','#f1f4ef','#f3f6f2','#f6f8f5','#f9faf8','#fcfcfb']
+
 print len(hexColors)
 def get_voting_info(class_name, info_type):
 	state_name = ""
