@@ -87,9 +87,9 @@ function createVoteLocationResult(state){
     var image="";
     if (state=="NC"){
         image="<img src='DukeVotes.png'>"
-        state='<a href="https://studentaffairs.duke.edu/voters">NC</a>'
+        state='<a href="https://studentaffairs.duke.edu/voters/register-vote">NC</a>'
     }
-    $("#stateToVoteIn").append('<div>You should vote in '+state+'</div>'+image);
+    $("#stateToVoteIn").append('<div>You should register in '+state+'</div>'+image);
 
 }
 var election = new Datamap({
