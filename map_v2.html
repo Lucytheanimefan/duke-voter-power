@@ -12,15 +12,24 @@
     
     body {
         font-family: 'Open Sans', sans-serif;
+        margin: ;
     }
     
     form {
+        margin-right: 20px;
         margin-left: 20px;
         margin-top: 20px;
     }
     
     h1 {
         margin-bottom: 0px;
+    }
+
+    #map_election{
+        z-index: -5;
+        margin-top: -80px;
+        width: 900px;
+        height: 600px;
     }
     
     .hoverinfo {
@@ -50,13 +59,16 @@
     }
     
     #stateToVoteIn {
+        z-index: 5;
         margin-top: 10px;
         margin-left: 20px;
     }
     </style>
     <form class="pure-form pure-form-stacked">
         <label class="input">
-            <h1>Where should I vote?</h1></label>
+            <h1>Where should I vote?</h1>
+            <div id="intro">Votes are more impactful in some states than others. Select the state where you’re currently registered to vote and we’ll check <a href="http://projects.fivethirtyeight.com/2016-election-forecast/?ex_cid=rrpromo">FiveThirtyEight’s</a> Voter Power Index to see if your vote will be more impactful if you register in North Carolina.</div>
+        </label>
         <!--<input id="myState" placeholder="What state you are from" class="input" type="text">-->
         <select id="myState">
             <option value="AL">Alabama</option>
@@ -113,11 +125,10 @@
         <input type="button" id="submitbutton" class="pure-button pure-button-primary" value="Submit" onclick="getStateToVoteIn()">
     </form>
     <div id="stateToVoteIn"></div>
-    <div id="container"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="topojson.min.js"></script>
     <script src="datamaps.usa.min.js"></script>
-    <div id="map_election" style="position: relative; width: 700px; height: 500px;"></div>
+    <div id="map_election" style="position: relative;"></div>
     <script src="script.js"></script>
 </body>
