@@ -84,24 +84,19 @@ function getStateToVoteIn() {
 
 function createVoteLocationResult(state) {
     $("#stateToVoteIn").html("");
-<<<<<<< HEAD
+    //hover over state
+    console.log($(".datamaps-subunit."+state).first().mouseenter())
+    $(".datamaps-hoverover").first().css('display','block');
+    $(".datamaps-subunit."+state).trigger("hover");
     var image = "";
     if (state == "NC") {
         image = "<img src='DukeVotes.png'>"
         state = '<a href="https://studentaffairs.duke.edu/voters">NC</a>'
         $("#stateToVoteIn").append('<div>Your vote will be more likely to affect the outcome of the election if you register in North Carolina and vote here. You can find our guide to registering to vote in North Carolina <a href="http://www.dukechronicle.com/article/2016/09/how-to-vote-a-chronicle-guide-to-everything-you-need-to-know">here</a></div>' + image);
     } else {
-        $("#stateToVoteIn").append('Your vote will me more likely to affect the outcome of the election if you vote in the state where you’re currently registered.');
+        $("#stateToVoteIn").append('Your vote will be more likely to affect the outcome of the election if you vote in the state where you’re currently registered.');
     }
-=======
-    var image="";
-    if (state=="NC"){
-        image="<img src='DukeVotes.png'>"
-        state='<a href="https://studentaffairs.duke.edu/voters/register-vote">NC</a>'
-    }
-    $("#stateToVoteIn").append('<div>You should register in '+state+'</div>'+image);
 
->>>>>>> d78ed3c013a5fc5dd1daf82f276ae22a646fd099
 }
 var election = new Datamap({
     scope: 'usa',
@@ -120,3 +115,4 @@ var election = new Datamap({
     data: votingData
 });
 election.labels();
+

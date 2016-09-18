@@ -10,9 +10,14 @@
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
     
+    hr {
+        margin-left: 20px;
+    }
+    
     body {
+        width: 900px;
         font-family: 'Open Sans', sans-serif;
-        margin: ;
+        z-index: -10;
     }
     
     form {
@@ -24,10 +29,9 @@
     h1 {
         margin-bottom: 0px;
     }
-
-    #map_election{
-        z-index: -5;
-        margin-top: -80px;
+    
+    #map_election {
+        margin-top: -20px;
         width: 900px;
         height: 600px;
     }
@@ -41,6 +45,13 @@
         box-shadow: 1px 1px 5px #CCC;
         font-size: 12px;
         border: 1px solid #CCC;
+    }
+    
+    #explanation {
+        margin-left: 20px;
+        font-size: 14px;
+        float: right;
+        margin-bottom: -20px;
     }
     
     .state {
@@ -63,16 +74,16 @@
         margin-top: 10px;
         margin-left: 20px;
     }
+    
+    .credit {
+        text-align: right;
+    }
     </style>
     <form class="pure-form pure-form-stacked">
         <label class="input">
-<<<<<<< HEAD
             <h1>Chronicle Interactive: Where should I vote?</h1>
             <div id="intro">Votes are more impactful in some states than others. Select the state where you’re currently registered to vote and we’ll check <a href="http://projects.fivethirtyeight.com/2016-election-forecast/?ex_cid=rrpromo">FiveThirtyEight’s</a> Voter Power Index to see if your vote will be more impactful if you register in North Carolina.</div>
         </label>
-=======
-            <h1>Chronicle Interactive: Where should I vote?</h1></label>
->>>>>>> d78ed3c013a5fc5dd1daf82f276ae22a646fd099
         <!--<input id="myState" placeholder="What state you are from" class="input" type="text">-->
         <select id="myState">
             <option value="AL">Alabama</option>
@@ -129,10 +140,15 @@
         <input type="button" id="submitbutton" class="pure-button pure-button-primary" value="Submit" onclick="getStateToVoteIn()">
     </form>
     <div id="stateToVoteIn"></div>
+    <hr>
+    <span id="explanation">According to FiveThiryEight, <i>Two measures help capture how important a state and its voters will be in determining the next president: <b>“Tipping-point chance”</b> is the probability that a state will provide the decisive vote in the Electoral College. <b>“Voter power index”</b> is the relative likelihood that an individual voter in a state will determine the Electoral College winner.</i></span>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="topojson.min.js"></script>
     <script src="datamaps.usa.min.js"></script>
     <div id="map_election" style="position: relative;"></div>
+    <div class="credit">
+        <h6>Interactive by Lucy Zhang | The Chronicle</h6>
+    </div>
     <script src="script.js"></script>
 </body>
