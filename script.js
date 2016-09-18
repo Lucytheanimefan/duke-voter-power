@@ -87,10 +87,12 @@ function getStateToVoteIn() {
 
 function createVoteLocationResult(state) {
     $("#stateToVoteIn").html("");
+    /*
     //hover over state
     console.log($(".datamaps-subunit."+state).first().mouseenter())
     $(".datamaps-hoverover").first().css('display','block');
     $(".datamaps-subunit."+state).trigger("hover");
+    */
     var image = "";
     if (state == "NC") {
         image = "<img src='DukeVotes.png'>"
